@@ -1,5 +1,9 @@
 function [Best_Distance,Best_Solution] = Tabu_Search(City_loc, Tabu_Length, Iteration_Num)
 %禁忌搜索算法
+%ToDo1 修改增量函数解决总距离为负值问题
+%ToDo2 增加搜索过程中的集中搜索和分散搜索策略
+%ToDo3 修改禁忌长度避免可能会出现的循环
+%ToDo4 generalize algorithm
 
 %初始化
 City_Num = size(City_loc,1);
@@ -35,7 +39,7 @@ Tabu_List = zeros(City_Num,City_Num);
 
 Current_Solution = Init_Solution;
 Current_Distance = Init_Distance; 
-while iter <= Iteration_Num
+while iter < Iteration_Num
     Tabu_List = update_tabu_length(Tabu_List);                              %更新禁忌长度
     Neighborhood_Solution = gen_neigh_solu(Current_Solution, Distance);     %生成所有邻域解
     [Best_Distance(iter+1),Best_Solution(iter+1,:),...                      %根据禁忌表及特赦准则选择当前解

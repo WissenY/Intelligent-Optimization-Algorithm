@@ -14,11 +14,9 @@ L = round( (N*(N-1)/2)^0.5 );                                               %禁
 G = 1000;                                                                   %最大迭代次数
 
 %绘制城市散点图
-%一个奇怪的bug:在后面添加pause函数以使图像2随迭代次数更新后，图像1绘制出的散点图非正常地输出为线图
-%ToDo 修改此部分为scatter函数
 figure('Name', 'City Scatter Map');
 for n = 1:N
-    plot(C(n,1), C(n,2), 'or');                                             %使用plot绘制散点图;x,y均为标量
+    plot(C(n,1), C(n,2), 'oy');
     hold on;
 end
 
@@ -29,24 +27,23 @@ end
 figure('Name', 'Best Solution');
 for g = 1:G
     for n = 1:N-1
-        plot([C(Best_Solution(g,n),1), C(Best_Solution(g,n+1),1)], ...      %最优解相邻两点的x坐标;只有当x为矩阵时plot函数才能将城市点连接起来
-             [C(Best_Solution(g,n),2), C(Best_Solution(g,n+1),2)], ...      %最优解相邻两点的y坐标
-             '--or');
-         hold on;                                                           %保持继续绘制新的城市点
+        plot([C(Best_Solution(g,n),1), C(Best_Solution(g,n+1),1)], ...       %最优解相邻两点的x坐标;只有当x为矩阵时plot函数才能将城市点连接起来
+             [C(Best_Solution(g,n),2), C(Best_Solution(g,n+1),2)], ...       %最优解相邻两点的y坐标
+             '--oy');
+         hold on;                                                            %保持继续绘制新的城市点
     end
-    plot([C(Best_Solution(g,N),1), C(Best_Solution(g,1),1)], ...              %绘制首尾相连的城市图
-         [C(Best_Solution(g,N),2), C(Best_Solution(g,1),2)], ...
-         '--or');
+    plot(C(Best_Solution(g,N),1), C(Best_Solution(g,1),1)], ...              %绘制首尾相连的城市图
+         C(Best_Slotuion(g,N),2), C(Best_Solution(g,1),2)], ...
+         '--oy');
      hold off;
-     pause(0.05);
 end
 
 %绘制距离-迭代次数图
 figure('Name', 'Best Distance - Iteration')
-plot([1:G]', Best_Distance);
+plot([1:G], Best_Distance);
 xlabel('迭代次数');
 ylabel('总距离');
-title('目标函数变化曲线');
+title('目标函数变化qu'xian
 
-% Best_Distance
-% Best_Solution
+Best_Distance
+Best_Solution

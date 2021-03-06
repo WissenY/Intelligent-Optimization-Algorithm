@@ -1,10 +1,11 @@
-function [best_distance,best_solution,...
+function [nbest_distance,nbest_solution,...
           next_distance,next_solution,new_tabu_list] = select_can_solu(...
           best_distance,best_solution,current_distance, current_solution, ...
           neighborhood_solution, tabu_list, tabu_length)
 %通过查禁忌表和最优解来选择候选解
 %更新当前解，最优解，禁忌表
-
+nbest_distance = best_distance;
+nbest_solution = best_solution;
 new_tabu_list = tabu_list;
 %邻域选择的最优策略
 [city_a,city_b] = find(neighborhood_solution == ...
@@ -28,8 +29,8 @@ next_solution(i) = city_b;
 next_solution(j) = city_a;
 %满足特赦准则就更新最优解
 %特赦准则为邻域解优于当前最优解
-if next_distance > best_distance                                        
-    best_distance = next_distance;
-    best_solution = next_solution;
+if next_distance < best_distance                                        
+    nbest_distance = next_distance;
+    nbest_solution = next_solution;
 end
 
