@@ -56,7 +56,7 @@ while t >= tf
         else
             if rand < exp( -(E_new - E_current) / t)
                 E_current = E_new;
-                sol_current = sol_new;
+                sol_surrent = sol_new;
             else
                 sol_new = sol_current;
             end
